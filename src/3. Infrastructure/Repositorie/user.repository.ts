@@ -41,3 +41,5 @@ class UserManager implements UserRepository {
     return [];
   }
 }
+
+export default UserManager;
