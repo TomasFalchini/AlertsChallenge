@@ -1,8 +1,11 @@
-import { AlertType, Topic } from "../types";
+import { AlertType } from "../types";
+
+type userId = number;
 
 export interface AlertEntity {
   readonly id: number;
   type: AlertType;
-  topic: Topic;
   expirationDate?: Date;
+  isRead?: boolean;
+  recipient?: userId;
 }

@@ -3,4 +3,4 @@ export enum AlertType {
   Urgente,
 }
 
-export type Topic = string;
+export type TopicName = string;
