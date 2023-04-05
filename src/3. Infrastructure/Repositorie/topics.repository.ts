@@ -19,3 +19,5 @@ class TopicManager implements TopicRepository {
     });
   }
 }
+
+export default TopicManager;
