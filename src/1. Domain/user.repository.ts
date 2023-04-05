@@ -5,6 +5,6 @@ import { UserEntity } from "./user.entity";
 export interface UserRepository {
   registerUserForAlerts(user: UserEntity): void;
   updateUserTopicSubscription(id: number, topic: TopicName): void;
-  markAlertAsRead(alertId: number): void;
+  markAlertAsRead(alertId: number, userId: number): void;
   getUnreadNonExpiredUserAlerts(userId: number): AlertEntity[];
 }

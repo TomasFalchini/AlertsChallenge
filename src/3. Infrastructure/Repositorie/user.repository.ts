@@ -18,7 +18,14 @@ class UserManager implements UserRepository {
     return;
   }
 
-  markAlertAsRead(alertId: number) {}
+  markAlertAsRead(alertId: number, userId: number) {
+    const user = this.users.find((users) => users.id === userId);
+    if (!user) return;
+    const alert = user.alerts.find((alerts) => alerts.id === alertId);
+    if (!alert) return;
+    alert.isRead = true;
+    return;
+  }
 
   getUnreadNonExpiredUserAlerts(userId: number): AlertEntity[] {
     const user = this.users.find((users) => users.id === userId);
