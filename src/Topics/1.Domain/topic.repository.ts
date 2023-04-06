@@ -1,5 +1,5 @@
 import { TopicName } from "../types";
-import { AlertEntity } from "./alert.entity";
+import { AlertEntity } from "../Alerts/1.Domain/alert.entity";
 import { TopicEntity } from "./topic.entity";
 
 export interface TopicRepository {

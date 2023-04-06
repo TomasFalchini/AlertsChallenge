@@ -1,4 +1,4 @@
-import { AlertEntity } from "../../1. Domain/alert.entity";
+import { AlertEntity } from "../../Alerts/1.Domain/alert.entity";
 
 export interface SortStrategy {
   sort(array: AlertEntity[]): AlertEntity[];

@@ -1,6 +1,7 @@
-import { AlertEntity } from "../../1. Domain/alert.entity";
-import { UserEntity } from "../../1. Domain/user.entity";
-import { UserRepository } from "../../1. Domain/user.repository";
+import { AlertEntity } from "../../Alerts/1.Domain/alert.entity";
+import { UserEntity } from "../1.Domain/user.entity";
+import { UserRepository } from "../1.Domain/user.repository";
+
 
 class UserManager implements UserRepository {
   private users: UserEntity[] = [];

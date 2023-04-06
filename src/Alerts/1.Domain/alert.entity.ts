@@ -1,4 +1,4 @@
-import { AlertType } from "../types";
+import { AlertType } from "../../types";
 
 type userId = number;
 

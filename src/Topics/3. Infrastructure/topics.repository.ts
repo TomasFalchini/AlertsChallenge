@@ -1,6 +1,6 @@
-import { AlertEntity } from "../../1. Domain/alert.entity";
-import { TopicEntity } from "../../1. Domain/topic.entity";
-import { TopicRepository } from "../../1. Domain/topic.repository";
+import { AlertEntity } from "../../Alerts/1.Domain/alert.entity";
+import { TopicEntity } from "../1.Domain/topic.entity";
+import { TopicRepository } from "../1.Domain/topic.repository";
 
 class TopicManager implements TopicRepository {
   private topics: TopicEntity[] = [];
