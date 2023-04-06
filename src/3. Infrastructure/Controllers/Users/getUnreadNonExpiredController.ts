@@ -1,28 +1,24 @@
 import { Request, Response, NextFunction } from "express";
-import { RegisterUserUseCase } from "../../../User/2. UseCases/registerUser";
 import { UserEntity } from "../../../User/1.Domain/user.entity";
+import { GetUnreadNonExpiredUserAlertsUseCase } from "../../../User/2. UseCases/getUnreadNonExpired";
 
 export class GetUnreadNonExpiredController {
-  constructor(private registerUseCase: RegisterUserUseCase) {}
+  constructor(
+    private getUnreadNonExpired: GetUnreadNonExpiredUserAlertsUseCase
+  ) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {
-    const { firstName, lastName } = req.body;
+    const { userId } = req.body;
 
     try {
-      if (typeof firstName !== "string" || typeof lastName !== "string") {
-        throw new Error("Invalid name or lastName");
+      if (typeof userId !== "number") {
+        throw new Error("Invalid userId. It must be a number");
       }
 
-      //sacar a Factory
-      const user: UserEntity = {
-        id: 1000, // corregir
-        firstName,
-        lastName,
-        topicSuscription: [],
-        alerts: [],
-      };
-      const result = this.registerUseCase.registerUser(user);
-      return res.status(200).send("User registered");
+      const alerts =
+        this.getUnreadNonExpired.getUnreadNonExpiredUserAlerts(userId);
+
+      return res.status(200).send({ alerts });
     } catch (err: any) {
       err.status = 404;
       next(err);

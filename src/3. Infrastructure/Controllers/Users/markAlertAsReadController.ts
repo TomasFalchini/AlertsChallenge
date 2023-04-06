@@ -11,7 +11,7 @@ export class MarkAlertAsReadController {
       if (typeof alertId !== "number" || typeof userId !== "number") {
         throw new Error("Invalid ID");
       }
-      const result = this.markAlertUseCase.markAlertAsRead(alertId, userId);
+      this.markAlertUseCase.markAlertAsRead(alertId, userId);
       return res.status(200).send("Alert mark as read");
     } catch (err: any) {
       err.status = 404;
