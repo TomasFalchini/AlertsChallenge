@@ -3,7 +3,17 @@ import { TopicEntity } from "../1.Domain/topic.entity";
 import { TopicRepository } from "../1.Domain/topic.repository";
 
 class TopicManager implements TopicRepository {
+  private static instance: TopicManager;
   private topics: TopicEntity[] = [];
+
+  private constructor() {}
+
+  static getInstance(): TopicManager {
+    if (!TopicManager.instance) {
+      TopicManager.instance = new TopicManager();
+    }
+    return TopicManager.instance;
+  }
 
   registerNewAlertTopic(topic: TopicEntity): void {
     this.topics.push(topic);

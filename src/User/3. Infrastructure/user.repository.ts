@@ -2,9 +2,18 @@ import { AlertEntity } from "../../Alerts/1.Domain/alert.entity";
 import { UserEntity } from "../1.Domain/user.entity";
 import { UserRepository } from "../1.Domain/user.repository";
 
-
 class UserManager implements UserRepository {
+  private static instance: UserManager;
   private users: UserEntity[] = [];
+
+  private constructor() {}
+
+  static getInstance(): UserManager {
+    if (!UserManager.instance) {
+      UserManager.instance = new UserManager();
+    }
+    return UserManager.instance;
+  }
 
   registerUserForAlerts(user: UserEntity) {
     this.users.push(user);
@@ -43,4 +52,4 @@ class UserManager implements UserRepository {
   }
 }
 
-export default UserManager;
+export default UserManager.getInstance();
