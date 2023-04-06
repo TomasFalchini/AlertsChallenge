@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { UserEntity } from "../../../User/1.Domain/user.entity";
 import { GetUnreadNonExpiredUserAlertsUseCase } from "../../../User/2. UseCases/getUnreadNonExpired";
 
 export class GetUnreadNonExpiredController {
