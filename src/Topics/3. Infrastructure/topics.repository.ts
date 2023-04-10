@@ -30,4 +30,4 @@ class TopicManager implements TopicRepository {
   }
 }
 
-export default TopicManager;
+export default TopicManager.getInstance();
