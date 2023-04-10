@@ -19,6 +19,13 @@ class AlertManager implements AlertsRepository {
       top.alerts.push(alert);
     }
 
+    const users = this.usersManager.getUsers();
+    users.forEach((user) => {
+      if (user.topicSuscription.includes(topic)) {
+        this.sendTopicAlertToUser(topic, alert, user.id);
+      }
+    });
+
     return;
   }
 
@@ -49,3 +56,5 @@ class AlertManager implements AlertsRepository {
     return;
   }
 }
+
+export default AlertManager;

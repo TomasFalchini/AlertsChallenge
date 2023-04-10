@@ -13,6 +13,10 @@ import { GetNonExpiredTopicAlerts } from "../../Topics/2. UseCases/getNonExpired
 import topicsRepository from "../../Topics/3. Infrastructure/topics.repository";
 import { RegisterNewTopicController } from "../Controllers/Topics/registerNewTopicController";
 import { RegisterNewAlertTopic } from "../../Topics/2. UseCases/registerNewTopic";
+import { AlertsController } from "../Controllers/Alerts/AlertsController";
+import { SendTopicAlertToAllSubscribers } from "../../Alerts/2. UseCases/sendTopicAlertToAll";
+import { SendTopicAlertToUser } from "../../Alerts/2. UseCases/sendTopicAlertToUser";
+import AlertManager from "../../Alerts/3. Infrastructure/alerts.repository";
 
 const routes = express();
 
@@ -40,11 +44,16 @@ const getNonExpiredTopicAlertsCtrl = new GetNonExpiredTopicAlertsController(
   new GetNonExpiredTopicAlerts(topicsRepository)
 );
 
+const alertsController = new AlertsController(
+  new SendTopicAlertToAllSubscribers(new AlertManager()),
+  new SendTopicAlertToUser(new AlertManager())
+);
+
 routes
   .post("/newUser", registerUserCtrl.execute)
   .post("newTopic", registerNewTopicCtrl.execute)
   .put("/suscribeToTopic", updateUserTopicSubscriptionCtrl.execute)
-  .post("/sendAlert")
+  .post("/sendAlert", alertsController.execute)
   .put("/readAlert", markAlertAsReadCtrl.execute)
   .get("/userAlerts", getUnreadNonExpiredUserAlertsCtrl.execute)
   .get("/topicAlerts", getNonExpiredTopicAlertsCtrl.execute);

@@ -5,7 +5,7 @@ import { AlertEntity } from "../../../Alerts/1.Domain/alert.entity";
 import { isAlertEntity } from "../../../Alerts/1.Domain/isAlertEntity";
 import { Controller } from "../ControllersInterface";
 
-export class GetNonExpiredTopicAlertsController implements Controller {
+export class AlertsController implements Controller {
   constructor(
     private sendTopicAlertToAll: SendTopicAlertToAllSubscribersUseCase,
     private sendTopicAlertToUser: SendTopicAlertToUserUseCase
