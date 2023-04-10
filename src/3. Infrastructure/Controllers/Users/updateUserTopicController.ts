@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { UpdateUserTopicSubscriptionUseCase } from "../../../User/2. UseCases/updateUserTopic";
+import { Controller } from "../ControllersInterface";
 
-export class UpdateUserTopicController {
+export class UpdateUserTopicController implements Controller {
   constructor(private updateUserTopic: UpdateUserTopicSubscriptionUseCase) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {

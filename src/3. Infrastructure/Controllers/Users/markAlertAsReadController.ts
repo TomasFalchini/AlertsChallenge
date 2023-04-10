@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { MarkAlertAsReadUseCase } from "../../../User/2. UseCases/markAlertAsRead";
+import { Controller } from "../ControllersInterface";
 
-export class MarkAlertAsReadController {
+export class MarkAlertAsReadController implements Controller {
   constructor(private markAlertUseCase: MarkAlertAsReadUseCase) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {

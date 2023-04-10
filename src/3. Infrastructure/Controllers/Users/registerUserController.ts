@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { RegisterUserUseCase } from "../../../User/2. UseCases/registerUser";
 import { UserEntity } from "../../../User/1.Domain/user.entity";
+import { Controller } from "../ControllersInterface";
 
-export class RegisterUserController {
+export class RegisterUserController implements Controller {
   constructor(private registerUseCase: RegisterUserUseCase) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {

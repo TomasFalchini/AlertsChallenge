@@ -15,6 +15,10 @@ class TopicManager implements TopicRepository {
     return TopicManager.instance;
   }
 
+  getTopic(topic: string) {
+    return this.topics.find((t) => t.name === topic);
+  }
+
   registerNewAlertTopic(topic: TopicEntity): void {
     this.topics.push(topic);
     return;

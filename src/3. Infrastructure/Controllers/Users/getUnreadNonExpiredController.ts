@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { GetUnreadNonExpiredUserAlertsUseCase } from "../../../User/2. UseCases/getUnreadNonExpired";
+import { Controller } from "../ControllersInterface";
 
-export class GetUnreadNonExpiredController {
+export class GetUnreadNonExpiredController implements Controller {
   constructor(
     private getUnreadNonExpired: GetUnreadNonExpiredUserAlertsUseCase
   ) {}

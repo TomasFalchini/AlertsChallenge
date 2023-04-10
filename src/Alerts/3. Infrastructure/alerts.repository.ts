@@ -1,20 +1,51 @@
 import { AlertEntity } from "../1.Domain/alert.entity";
 import { AlertsRepository } from "../1.Domain/alerts.repository";
-import TopicManager from "../../Topics/3. Infrastructure/topics.repository";
+import topicsRepository from "../../Topics/3. Infrastructure/topics.repository";
+import userRepository from "../../User/3. Infrastructure/user.repository";
+import { AlertType } from "../../types";
 
 class AlertManager implements AlertsRepository {
-  sendTopicAlertToAllSubscribers(topic: string, alert: AlertEntity): void {}
+  private topicsManager = topicsRepository;
+  private usersManager = userRepository;
+
+  sendTopicAlertToAllSubscribers(topic: string, alert: AlertEntity): void {
+    const top = this.topicsManager.getTopic(topic);
+
+    if (!top) return;
+
+    if (alert.type === AlertType.Urgente) {
+      top.alerts.unshift(alert);
+    } else {
+      top.alerts.push(alert);
+    }
+
+    return;
+  }
 
   sendTopicAlertToUser(
     topic: string,
     alert: AlertEntity,
     userId: number
-  ): void {}
+  ): void {
+    const user = this.usersManager.getUser(userId);
 
-  /* private sortAlerts(alerts: AlertEntity[]): AlertEntity[] {
-    const urgents = alerts.filter((alert) => alert.type === "Urgent");
-    const informatives = alerts.filter((alert) => alert.type === "Informative");
+    if (!user) return;
 
-    return [...urgents.reverse(), ...informatives];
-  } */
+    if (!user.topicSuscription.includes(topic)) return;
+
+    const top = this.topicsManager.getTopic(topic);
+
+    if (!top) return;
+
+    alert.recipient = userId;
+    if (alert.type === AlertType.Urgente) {
+      top.alerts.unshift(alert);
+      user.alerts.unshift(alert);
+    } else {
+      top.alerts.push(alert);
+      user.alerts.push(alert);
+    }
+
+    return;
+  }
 }

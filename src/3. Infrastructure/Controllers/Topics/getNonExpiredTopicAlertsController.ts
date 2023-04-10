@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { GetNonExpiredTopicAlertsUseCase } from "../../../Topics/2. UseCases/getNonExpiredTopicAlerts";
+import { Controller } from "../ControllersInterface";
 
-export class GetNonExpiredTopicAlertsController {
+export class GetNonExpiredTopicAlertsController implements Controller {
   constructor(
     private getNonExpiredTopicAlerts: GetNonExpiredTopicAlertsUseCase
   ) {}

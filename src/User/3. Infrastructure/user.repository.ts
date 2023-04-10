@@ -15,6 +15,14 @@ class UserManager implements UserRepository {
     return UserManager.instance;
   }
 
+  getUser(userId: number) {
+    return this.users.find((u) => u.id === userId);
+  }
+
+  getUsers() {
+    return this.users;
+  }
+
   registerUserForAlerts(user: UserEntity) {
     this.users.push(user);
     return;
