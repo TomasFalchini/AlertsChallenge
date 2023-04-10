@@ -2,8 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import { RegisterUserUseCase } from "../../../User/2. UseCases/registerUser";
 import { UserEntity } from "../../../User/1.Domain/user.entity";
 import { Controller } from "../ControllersInterface";
+import UserFactory from "../../../User/1.Domain/user.factory";
 
 export class RegisterUserController implements Controller {
+  private userFactory = UserFactory;
+
   constructor(private registerUseCase: RegisterUserUseCase) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {
@@ -14,14 +17,7 @@ export class RegisterUserController implements Controller {
         throw new Error("Invalid name or lastName");
       }
 
-      //sacar a Factory
-      const user: UserEntity = {
-        id: 1000, // corregir
-        firstName,
-        lastName,
-        topicSuscription: [],
-        alerts: [],
-      };
+      const user: UserEntity = this.userFactory.createUser(firstName, lastName);
       this.registerUseCase.registerUser(user);
       return res.status(200).send("User registered");
     } catch (err: any) {

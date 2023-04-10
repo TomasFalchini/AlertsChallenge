@@ -4,3 +4,7 @@ export enum AlertType {
 }
 
 export type TopicName = string;
+
+export interface ErrorWithStatus extends Error {
+  status: number;
+}
