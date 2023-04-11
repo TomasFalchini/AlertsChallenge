@@ -67,3 +67,7 @@ Enviar por query "?userId="
 ## get: "/topicAlerts"
 
 Enviar por query "?topicName="
+
+## PARA CORRER LOS TEST:
+
+npm run test
