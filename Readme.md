@@ -24,7 +24,9 @@ Tomás Falchini || [LinkedIn](https://www.linkedin.com/in/tomasfalchini/)
 
 Se aplicó la arquitectura Clean Architecture para separar las distintas partes de un sistema en capas independientes, lo que permitió mejorar su mantenibilidad, escalabilidad y testabilidad. La capa central, que es la capa de dominio, se enfoca en abstraer la lógica de negocios de la aplicación y es completamente independiente de las capas de adaptadores y de la infraestructura.
 
-La aplicación de patrones de diseño como Singleton, Strategy, Inyección de dependencias y Proxy permitió mejorar la calidad del código y aumentar la eficiencia del sistema en general. Esto se logró gracias a que estos patrones ayudaron a reducir el acoplamiento entre las distintas partes del sistema, a la vez que aumentaron la flexibilidad y modularidad del mismo.
+La aplicación de patrones de diseño como Singleton, Inyección de dependencias y Proxy permitió mejorar la calidad del código y aumentar la eficiencia del sistema en general. Esto se logró gracias a que estos patrones ayudaron a reducir el acoplamiento entre las distintas partes del sistema, a la vez que aumentaron la flexibilidad y modularidad del mismo.
+
+Cabe aclarar que se respetaron los tiempos solicitados de 1 día máximo. Me hubiera gustado contar con más tiempo para poder refactorizar varias cosas, pero priorize el realizar el challenge en el tiempo estipulado.
 
 ### Para probar la aplicacion:
 
