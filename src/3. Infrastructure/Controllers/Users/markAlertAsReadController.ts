@@ -13,7 +13,7 @@ export class MarkAlertAsReadController implements Controller {
         throw new Error("Invalid ID");
       }
       this.markAlertUseCase.markAlertAsRead(alertId, userId);
-      return res.status(200).send("Alert mark as read");
+      return res.status(200).send({ result: "Alert mark as read" });
     } catch (err: any) {
       err.status = 404;
       next(err);

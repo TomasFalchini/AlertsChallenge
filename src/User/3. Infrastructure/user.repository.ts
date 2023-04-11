@@ -50,13 +50,21 @@ class UserManager implements UserRepository {
     if (user) {
       return user.alerts.filter((alerts) => {
         if (alerts.isRead) return false;
-        if (alerts.expirationDate && alerts.expirationDate <= new Date())
+        if (
+          alerts.expirationDate &&
+          new Date(alerts.expirationDate) <= new Date()
+        ) {
           return false;
+        }
 
         return true;
       });
     }
     return [];
+  }
+
+  cleanTest() {
+    this.users = [];
   }
 }
 

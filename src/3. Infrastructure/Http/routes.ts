@@ -51,7 +51,7 @@ const alertsController = new AlertsController(
 
 routes
   .post("/newUser", registerUserCtrl.execute)
-  .post("newTopic", registerNewTopicCtrl.execute)
+  .post("/newTopic", registerNewTopicCtrl.execute)
   .put("/suscribeToTopic", updateUserTopicSubscriptionCtrl.execute)
   .post("/sendAlert", alertsController.execute)
   .put("/readAlert", markAlertAsReadCtrl.execute)

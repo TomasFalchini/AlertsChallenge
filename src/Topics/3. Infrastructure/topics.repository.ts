@@ -26,11 +26,19 @@ class TopicManager implements TopicRepository {
 
   getNonExpiredTopicAlerts(topicName: string): AlertEntity[] {
     const topic = this.topics.find((topics) => topics.name === topicName);
+
     if (!topic) return [];
     return topic.alerts.filter((alerts) => {
-      if (alerts.expirationDate) return alerts.expirationDate >= new Date();
+      if (alerts.expirationDate) {
+        const today = new Date();
+        return new Date(alerts.expirationDate) >= today;
+      }
       return true;
     });
+  }
+
+  cleanTest() {
+    this.topics = [];
   }
 }
 

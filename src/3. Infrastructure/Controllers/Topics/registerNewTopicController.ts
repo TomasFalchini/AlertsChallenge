@@ -17,7 +17,7 @@ export class RegisterNewTopicController implements Controller {
 
       this.registerNewTopic.registerNewAlertTopic(topic);
 
-      return res.status(200).send("New topic created");
+      return res.status(200).send({ result: "New topic created" });
     } catch (err: any) {
       err.status = 404;
       next(err);

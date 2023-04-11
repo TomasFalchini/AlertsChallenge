@@ -1,6 +1,6 @@
 export enum AlertType {
-  Informativa,
-  Urgente,
+  Informativa = "INFORMATIVA",
+  Urgente = "URGENTE",
 }
 
 export type TopicName = string;

@@ -1,5 +1,6 @@
+import { AlertType } from "../../types";
 import { AlertEntity } from "./alert.entity";
 
 export function isAlertEntity(obj: any): obj is AlertEntity {
-  return typeof obj?.id === "number" && typeof obj?.type === "string";
+  return typeof obj?.description === "string";
 }

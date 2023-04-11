@@ -7,7 +7,6 @@ export class UpdateUserTopicController implements Controller {
 
   execute = (req: Request, res: Response, next: NextFunction) => {
     const { userId, topic } = req.body;
-
     try {
       if (typeof userId !== "number" || typeof topic !== "string") {
         throw new Error(
@@ -15,11 +14,9 @@ export class UpdateUserTopicController implements Controller {
         );
       }
       this.updateUserTopic.updateUserTopicSubscription(userId, topic);
-      return res
-        .status(200)
-        .send(
-          `The user with ID = ${userId} has been suscribed to the topic: ${topic}`
-        );
+      return res.status(200).send({
+        result: `The user with ID = ${userId} has been suscribed to the topic: ${topic}`,
+      });
     } catch (err: any) {
       err.status = 404;
       next(err);

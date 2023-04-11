@@ -40,7 +40,7 @@ export class AlertsController implements Controller {
         this.sendTopicAlertToAll.sendTopicAlertToAllSubscribers(topic, Alert);
       }
 
-      return res.status(200).send("The alert has been sent");
+      return res.status(200).send({ result: "The alert has been sent" });
     } catch (err: any) {
       err.status = 404;
       next(err);

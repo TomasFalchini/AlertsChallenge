@@ -12,17 +12,22 @@ class AlertManager implements AlertsRepository {
     const top = this.topicsManager.getTopic(topic);
 
     if (!top) return;
-
+    const alertToUser = { ...alert };
+    const alertToTopic = { ...alert };
     if (alert.type === AlertType.Urgente) {
-      top.alerts.unshift(alert);
+      top.alerts.unshift(alertToTopic);
     } else {
-      top.alerts.push(alert);
+      top.alerts.push(alertToTopic);
     }
 
     const users = this.usersManager.getUsers();
     users.forEach((user) => {
       if (user.topicSuscription.includes(topic)) {
-        this.sendTopicAlertToUser(topic, alert, user.id);
+        if (alert.type === AlertType.Urgente) {
+          user.alerts.unshift(alertToUser);
+        } else {
+          user.alerts.push(alertToUser);
+        }
       }
     });
 
@@ -35,7 +40,6 @@ class AlertManager implements AlertsRepository {
     userId: number
   ): void {
     const user = this.usersManager.getUser(userId);
-
     if (!user) return;
 
     if (!user.topicSuscription.includes(topic)) return;
@@ -45,6 +49,7 @@ class AlertManager implements AlertsRepository {
     if (!top) return;
 
     alert.recipient = userId;
+
     if (alert.type === AlertType.Urgente) {
       top.alerts.unshift(alert);
       user.alerts.unshift(alert);
