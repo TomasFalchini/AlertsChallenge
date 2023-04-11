@@ -30,16 +30,40 @@ La aplicación de patrones de diseño como Singleton, Strategy, Inyección de de
 
 npm install
 
-npm start
+npm run dev
 
 Esto iniciará la aplicación en localhost, en el puerto 8080
 
 Las rutas son las siguientes:
 
-post: "/newUser"
-post: "newTopic"
-put: "/suscribeToTopic"
-post: "/sendAlert"
-put: "/readAlert"
-get: "/userAlerts"
-get: "/topicAlerts"
+## post: "/newUser"
+
+Enviar por body {firstName, lastName}
+
+## post: "newTopic"
+
+Enviar por body {topicName}
+
+## put: "/suscribeToTopic"
+
+Enviar por body {topicName, userId}
+
+## post: "/sendAlert"
+
+Cubre los dos casos, el enviar un alerta a un usuario en particular o a todos los usuarios suscriptos a un topic.
+
+Para el primer caso, enviar por body {alert: {description, type}, topic, userId}
+
+Caso contrario, omitir enviar userId por body
+
+## put: "/readAlert"
+
+Enviar por body {alertId, userId}
+
+## get: "/userAlerts"
+
+Enviar por body {userId}
+
+## get: "/topicAlerts"
+
+Enviar por body {topicName}
