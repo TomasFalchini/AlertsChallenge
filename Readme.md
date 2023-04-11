@@ -62,8 +62,8 @@ Enviar por body {alertId, userId}
 
 ## get: "/userAlerts"
 
-Enviar por body {userId}
+Enviar por query "?userId="
 
 ## get: "/topicAlerts"
 
-Enviar por body {topicName}
+Enviar por query "?topicName="
