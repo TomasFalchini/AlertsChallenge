@@ -8,7 +8,7 @@ export class GetNonExpiredTopicAlertsController implements Controller {
   ) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {
-    const { topicName } = req.body;
+    const { topicName } = req.query;
 
     try {
       if (typeof topicName !== "string") {

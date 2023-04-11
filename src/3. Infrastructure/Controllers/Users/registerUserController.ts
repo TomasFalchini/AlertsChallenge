@@ -19,7 +19,7 @@ export class RegisterUserController implements Controller {
 
       const user: UserEntity = this.userFactory.createUser(firstName, lastName);
       this.registerUseCase.registerUser(user);
-      return res.status(200).send("User registered");
+      return res.status(200).send(`User registered with ID: ${user.id}`);
     } catch (err: any) {
       err.status = 404;
       next(err);

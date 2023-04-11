@@ -4,8 +4,11 @@ import { SendTopicAlertToUserUseCase } from "../../../Alerts/2. UseCases/sendTop
 import { AlertEntity } from "../../../Alerts/1.Domain/alert.entity";
 import { isAlertEntity } from "../../../Alerts/1.Domain/isAlertEntity";
 import { Controller } from "../ControllersInterface";
+import alertFactory from "../../../Alerts/1.Domain/alert.factory";
 
 export class AlertsController implements Controller {
+  private alertFactory = alertFactory;
+
   constructor(
     private sendTopicAlertToAll: SendTopicAlertToAllSubscribersUseCase,
     private sendTopicAlertToUser: SendTopicAlertToUserUseCase
@@ -23,10 +26,18 @@ export class AlertsController implements Controller {
         throw new Error("Invalid Alert");
       }
 
+      const Alert: AlertEntity = alertFactory.createAlert(
+        alert.description,
+        alert.type,
+        alert.recipient,
+        alert.expirationDate,
+        alert.isRead
+      );
+
       if (userId) {
-        this.sendTopicAlertToUser.sendTopicAlertToUser(topic, alert, userId);
+        this.sendTopicAlertToUser.sendTopicAlertToUser(topic, Alert, userId);
       } else {
-        this.sendTopicAlertToAll.sendTopicAlertToAllSubscribers(topic, alert);
+        this.sendTopicAlertToAll.sendTopicAlertToAllSubscribers(topic, Alert);
       }
 
       return res.status(200).send("The alert has been sent");

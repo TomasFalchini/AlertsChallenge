@@ -8,7 +8,7 @@ export class GetUnreadNonExpiredController implements Controller {
   ) {}
 
   execute = (req: Request, res: Response, next: NextFunction) => {
-    const { userId } = req.body;
+    const { userId } = req.query;
 
     try {
       if (typeof userId !== "number") {
